@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomoc Prawna</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+        }
+        header, footer {
+            background: #2f4f4f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 30px;
+        }
+        section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #2f4f4f;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #2f4f4f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pomoc Prawna</h1>
+        <p>Pomoc prawna dla małego biznesu. Doraźne wsparcie w bieżącym funkcjonowaniu twojej firmy</p>
+    </header>
+    <main>
+        <section>
+            <h2>Zgłoś zlecenie</h2>
+            <form>
+                <label for="job-title">Tytuł zlecenia:</label>
+                <input type="text" id="job-title" name="job-title" required>
+
+                <label for="job-description">Opis zlecenia:</label>
+                <textarea id="job-description" name="job-description" rows="4" required></textarea>
+
+                <label for="job-deadline">Termin realizacji:</label>
+                <input type="date" id="job-deadline" name="job-deadline" required>
+
+                <label for="job-rate">Proponowana stawka:</label>
+                <input type="text" id="job-rate" name="job-rate">
+
+                <label for="job-contact">Dane kontaktowe:</label>
+                <textarea id="job-contact" name="job-contact" rows="2" required></textarea>
+
+                <button type="submit">Wyślij zlecenie</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Zgłoszenie prawnika</h2>
+            <form>
+                <label for="lawyer-name">Imię i nazwisko:</label>
+                <input type="text" id="lawyer-name" name="lawyer-name" required>
+
+                <label for="lawyer-status">Status (np. aplikant, radca prawny):</label>
+                <input type="text" id="lawyer-status" name="lawyer-status" required>
+
+                <label for="lawyer-specialty">Obszar specjalizacji:</label>
+                <input type="text" id="lawyer-specialty" name="lawyer-specialty">
+
+                <label for="lawyer-experience">Doświadczenie:</label>
+                <textarea id="lawyer-experience" name="lawyer-experience" rows="3"></textarea>
+
+                <label for="lawyer-contact">Dane kontaktowe:</label>
+                <textarea id="lawyer-contact" name="lawyer-contact" rows="2" required></textarea>
+
+                <button type="submit">Zgłoś się</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Opinie</h2>
+            <form>
+                <label for="rating">Ocena (1-5):</label>
+                <select id="rating" name="rating" required>
+                    <option value="">Wybierz ocenę</option>
+                    <option value="1">1 - Słabo</option>
+                    <option value="2">2</option>
+                    <option value="3">3 - Średnio</option>
+                    <option value="4">4</option>
+                    <option value="5">5 - Świetnie</option>
+                </select>
+
+                <label for="review-text">Opinia:</label>
+                <textarea id="review-text" name="review-text" rows="3"></textarea>
+
+                <button type="submit">Dodaj opinię</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Pomoc Prawna
+    </footer>
+</body>
+</html>
