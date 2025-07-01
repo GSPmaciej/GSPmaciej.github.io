@@ -193,7 +193,7 @@ const form = document.getElementById('add-ad-form');
 const adsContainer = document.getElementById('ads-container');
 
 
-const SHEETY_API = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/Ogłoszenia pomoc prawna';
+const SHEETY_API = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/arkusz1';
 
 // Dodawanie ogłoszenia
 form.addEventListener('submit', async function (e) {
@@ -205,7 +205,7 @@ form.addEventListener('submit', async function (e) {
     const rate = document.getElementById('new-rate').value;
 
     const adData = {
-        "Ogłoszenia pomoc prawna": {
+        "arkusz1": {
             Tytuł: title,
             Opis: desc,
             Termin: deadline,
@@ -225,9 +225,11 @@ form.addEventListener('submit', async function (e) {
     if (response.ok) {
         alert("Ogłoszenie dodane!");
         form.reset();
-        loadAds(); // odśwież listę ogłoszeń
+        loadAds();
     } else {
-        alert("Błąd przy dodawaniu ogłoszenia.");
+        const errorText = await response.text();
+        alert("Błąd przy dodawaniu ogłoszenia: " + errorText);
+        console.error(errorText);
     }
 });
 
@@ -240,7 +242,7 @@ async function loadAds() {
         return;
     }
     const data = await response.json();
-    const ads = data["Ogłoszenia pomoc prawna"] || [];
+    const ads = data["arkusz1"] || [];
     ads.reverse().forEach(ad => {
         const newAd = document.createElement('div');
         newAd.className = 'ad';
@@ -268,9 +270,9 @@ async function loadAds() {
 
 // Dodawanie ogłoszenia
 function addAd(ad) {
-    let url = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/Ogłoszenia pomoc prawna';
+    let url = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/arkusz1';
     let body = {
-        "Ogłoszenia pomoc prawna": {
+        "arkusz1": {
             Tytuł: ad.title,
             Opis: ad.desc,
             Termin: ad.deadline,
@@ -285,16 +287,16 @@ function addAd(ad) {
     })
     .then((response) => response.json())
     .then(json => {
-        console.log(json["Ogłoszenia pomoc prawna"]);
+        console.log(json["arkusz1"]);
         loadAds(); // odśwież listę ogłoszeń
     });
 }
 
 // Edycja ogłoszenia (np. o id=2)
 function editAd(id, ad) {
-    let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/Ogłoszenia pomoc prawna/${id}`;
+    let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/arkusz1/${id}`;
     let body = {
-        "Ogłoszenia pomoc prawna": {
+        "arkusz1": {
             Tytuł: ad.title,
             Opis: ad.desc,
             Termin: ad.deadline,
@@ -309,14 +311,14 @@ function editAd(id, ad) {
     })
     .then((response) => response.json())
     .then(json => {
-        console.log(json["Ogłoszenia pomoc prawna"]);
+        console.log(json["arkusz1"]);
         loadAds(); // odśwież listę ogłoszeń
     });
 }
 
 // Usuwanie ogłoszenia (np. o id=2)
 function deleteAd(id) {
-    let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/Ogłoszenia pomoc prawna/${id}`;
+    let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/arkusz1/${id}`;
     fetch(url, {
         method: 'DELETE',
     })
