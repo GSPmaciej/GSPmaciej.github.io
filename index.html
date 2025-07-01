@@ -144,7 +144,7 @@
                 <label for="new-description">Opis zlecenia:</label>
                 <textarea id="new-description" rows="3" required></textarea>
 
-                <label for="new-deadline">Termin:</label>
+                <label for="new-deadline">Termin zlecenia:</label>
                 <input type="date" id="new-deadline">
 
                 <label for="new-rate">Stawka:</label>
@@ -265,16 +265,16 @@ async function loadAds() {
         newAd.className = 'ad';
 
         const titleElement = document.createElement('h3');
-        titleElement.textContent = ad.Tytuł;
+        titleElement.textContent = ad.tytuł;
 
         const descElement = document.createElement('p');
-        descElement.innerHTML = `<strong>Opis:</strong> ${ad.Opis}`;
+        descElement.innerHTML = `<strong>Opis:</strong> ${ad.opis}`;
 
         const deadlineElement = document.createElement('p');
-        deadlineElement.innerHTML = `<strong>Termin:</strong> ${ad.Termin || 'Nieokreślony'}`;
+        deadlineElement.innerHTML = `<strong>Termin:</strong> ${ad.termin || 'Nieokreślony'}`;
 
         const rateElement = document.createElement('p');
-        rateElement.innerHTML = `<strong>Stawka:</strong> ${ad.Stawka || 'Do ustalenia'}`;
+        rateElement.innerHTML = `<strong>Stawka:</strong> ${ad.stawka || 'Do ustalenia'}`;
 
         newAd.appendChild(titleElement);
         newAd.appendChild(descElement);
