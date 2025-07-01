@@ -309,7 +309,7 @@ function editAd(id, ad) {
     })
     .then((response) => response.json())
     .then(json => {
-        console.log(json.arkusz1);
+        console.log(json["Ogłoszenia pomoc prawna"]);
         loadAds(); // odśwież listę ogłoszeń
     });
 }
