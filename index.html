@@ -225,14 +225,17 @@ form.addEventListener('submit', async function (e) {
         body: JSON.stringify(adData)
     });
 
+    const resultText = await response.text(); // 🔍 pokaż surową odpowiedź z serwera
+
+    console.log("Wysłane dane:", JSON.stringify(adData));
+    console.log("Odpowiedź Sheety:", resultText);
+
     if (response.ok) {
         alert("Ogłoszenie dodane!");
         form.reset();
         loadAds();
     } else {
-        const errorText = await response.text();
-        alert("Błąd przy dodawaniu ogłoszenia: " + errorText);
-        console.error(errorText);
+        alert("Błąd przy dodawaniu ogłoszenia.");
     }
 });
 
