@@ -156,6 +156,9 @@
 
         <section>
             <h2>Ostatnie ogłoszenia</h2>
+            <div id="ads-loading" style="display:none; color:#2f4f4f; margin-bottom:10px;">
+                Trwa odświeżanie ogłoszeń. Może to zająć do paru minut.
+            </div>
             <div class="ads-container" id="ads-container">
                 <!-- Ogłoszenia będą dodawane tutaj -->
             </div>
@@ -235,15 +238,19 @@ form.addEventListener('submit', async function (e) {
 
 // Pobieranie i wyświetlanie ogłoszeń
 async function loadAds() {
+    const loadingMsg = document.getElementById('ads-loading');
+    loadingMsg.style.display = 'block';
     adsContainer.innerHTML = '';
     const response = await fetch(SHEETY_API);
     if (!response.ok) {
         adsContainer.innerHTML = '<p>Błąd ładowania ogłoszeń.</p>';
+        loadingMsg.style.display = 'none';
         return;
     }
     const data = await response.json();
     const ads = data["arkusz1"] || [];
     ads.reverse().forEach(ad => {
+        console.log("OGŁOSZENIE:", ad); // <-- Dodano debugowanie
         const newAd = document.createElement('div');
         newAd.className = 'ad';
 
@@ -251,7 +258,7 @@ async function loadAds() {
         titleElement.textContent = ad.Tytuł;
 
         const descElement = document.createElement('p');
-        descElement.innerHTML = `<strong>Opis:</strong> ${ad.Opis}`;
+        descElement.innerHTML = `<strong>Opis:</strong> ${ad.Opis || '[brak danych]'}`;
 
         const deadlineElement = document.createElement('p');
         deadlineElement.innerHTML = `<strong>Termin:</strong> ${ad.Termin || 'Nieokreślony'}`;
@@ -266,6 +273,7 @@ async function loadAds() {
 
         adsContainer.appendChild(newAd);
     });
+    loadingMsg.style.display = 'none';
 }
 
 // Dodawanie ogłoszenia
