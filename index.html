@@ -126,6 +126,25 @@
             </form>
         </section>
         
+        <section>
+            <h2>Dodaj nowe ogłoszenie</h2>
+            <form id="add-ad-form">
+                <label for="new-title">Tytuł zlecenia:</label>
+                <input type="text" id="new-title" required>
+
+                <label for="new-description">Opis zlecenia:</label>
+                <textarea id="new-description" rows="3" required></textarea>
+
+                <label for="new-deadline">Termin:</label>
+                <input type="date" id="new-deadline">
+
+                <label for="new-rate">Stawka:</label>
+                <input type="text" id="new-rate">
+
+                <button type="submit">Dodaj ogłoszenie</button>
+            </form>
+         </section>
+
                <section>
             <h2>Ostatnie ogłoszenia</h2>
         
@@ -178,5 +197,69 @@
     <footer>
         &copy; 2025 Pomoc Prawna
     </footer>
+        <script>
+        const addAdForm = document.getElementById('add-ad-form');
+        const adsSection = document.querySelector('section h2 + .ad')?.parentNode || document.querySelector('section h2:last-of-type')?.parentNode;
+
+        addAdForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Zapobiega przeładowaniu strony, co pozwala na dynamiczne dodanie ogłoszenia do sekcji bez utraty danych lub odświeżania widoku.
+
+            // Pobierz dane z formularza
+            const title = document.getElementById('new-title').value;
+            const desc = document.getElementById('new-description').value;
+            const deadline = document.getElementById('new-deadline').value;
+            const rate = document.getElementById('new-rate').value;
+
+            // Utwórz element HTML dla nowego ogłoszenia
+            const newAd = document.createElement('div');
+            newAd.className = 'ad';
+            const titleElement = document.createElement('h3');
+            titleElement.textContent = title;
+
+            const descElement = document.createElement('p');
+            descElement.innerHTML = `<strong>Opis:</strong> ${desc}`;
+
+            const deadlineElement = document.createElement('p');
+            deadlineElement.innerHTML = `<strong>Termin:</strong> ${deadline || 'Nieokreślony'}`;
+            if (adsSection) {
+                adsSection.appendChild(newAd);
+            } else {
+                console.error('adsSection is undefined. Cannot append new advertisement.');
+            }
+            const rateElement = document.createElement('p');
+            rateElement.innerHTML = `<strong>Stawka:</strong> ${rate || 'Do ustalenia'}`;
+
+            newAd.appendChild(titleElement);
+            newAd.appendChild(descElement);
+            newAd.appendChild(deadlineElement);
+            newAd.appendChild(rateElement);
+            // Wyczyść formularz
+            addAdForm.reset();
+    
+            // Wyświetl komunikat potwierdzenia
+            const confirmationMessage = document.createElement('p');
+            confirmationMessage.textContent = 'Ogłoszenie zostało pomyślnie dodane!';
+            confirmationMessage.style.color = 'green';
+            confirmationMessage.style.marginTop = '10px';
+            addAdForm.appendChild(confirmationMessage);
+    
+            // Usuń komunikat po 3 sekundach
+            setTimeout(() => {
+                addAdForm.removeChild(confirmationMessage);
+            }, 3000);
+            adsSection.appendChild(newAd);
+
+            // Wyczyść formularz
+            addAdForm.reset();
+        });
+            setTimeout(() => {
+                form.removeChild(confirmationMessage);
+            }, 3000);
+            adsSection.appendChild(newAd);
+
+            // Wyczyść formularz
+            form.reset();
+        });
+    </script>
 </body>
 </html>
