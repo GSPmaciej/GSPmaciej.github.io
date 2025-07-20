@@ -6,7 +6,7 @@
     <title>Pomoc Prawna</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Calibri, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -144,7 +144,7 @@
                 <label for="new-description">Opis zlecenia:</label>
                 <textarea id="new-description" rows="3" required></textarea>
 
-                <label for="new-deadline">Termin zlecenia:</label>
+                <label for="new-deadline">Termin:</label>
                 <input type="date" id="new-deadline">
 
                 <label for="new-rate">Stawka:</label>
@@ -196,7 +196,7 @@ const form = document.getElementById('add-ad-form');
 const adsContainer = document.getElementById('ads-container');
 
 
-const SHEETY_API = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/arkusz1';
+const SHEETY_API = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/ogloszenia/pomocprawna';
 
 // Dodawanie ogłoszenia
 form.addEventListener('submit', async function (e) {
@@ -289,7 +289,7 @@ async function loadAds() {
 
 // Dodawanie ogłoszenia
 function addAd(ad) {
-    let url = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/arkusz1';
+    let url = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/ogloszenia/pomocprawna';
     let body = {
         "arkusz1": {
             Tytuł: ad.title,
@@ -313,7 +313,7 @@ function addAd(ad) {
 
 // Edycja ogłoszenia (np. o id=2)
 function editAd(id, ad) {
-    let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/arkusz1/${id}`;
+    let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/ogloszenia/pomocprawna/${id}`;
     let body = {
         "arkusz1": {
             Tytuł: ad.title,
@@ -337,7 +337,7 @@ function editAd(id, ad) {
 
 // Usuwanie ogłoszenia (np. o id=2)
 function deleteAd(id) {
-    let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/pomocPrawna/arkusz1/${id}`;
+    let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/ogloszenia/pomocprawna/${id}`;
     fetch(url, {
         method: 'DELETE',
     })
