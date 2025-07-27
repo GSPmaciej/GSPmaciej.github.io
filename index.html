@@ -233,7 +233,7 @@ form.addEventListener('submit', async function (e) {
     if (response.ok) {
         alert("Ogłoszenie dodane!");
         form.reset();
-        loadAds();
+        setTimeout(loadAds, 3000); // opóźnienie 3 sekundy
     } else {
         alert("Błąd przy dodawaniu ogłoszenia.");
     }
@@ -265,16 +265,16 @@ async function loadAds() {
         newAd.className = 'ad';
 
         const titleElement = document.createElement('h3');
-        titleElement.textContent = ad.tytuł;
+        titleElement.textContent = ad.Tytuł;
 
         const descElement = document.createElement('p');
-        descElement.innerHTML = `<strong>Opis:</strong> ${ad.opis}`;
+        descElement.innerHTML = `<strong>Opis:</strong> ${ad.Opis}`;
 
         const deadlineElement = document.createElement('p');
-        deadlineElement.innerHTML = `<strong>Termin:</strong> ${ad.termin || 'Nieokreślony'}`;
+        deadlineElement.innerHTML = `<strong>Termin:</strong> ${ad.Termin || 'Nieokreślony'}`;
 
         const rateElement = document.createElement('p');
-        rateElement.innerHTML = `<strong>Stawka:</strong> ${ad.stawka || 'Do ustalenia'}`;
+        rateElement.innerHTML = `<strong>Stawka:</strong> ${ad.Stawka || 'Do ustalenia'}`;
 
         newAd.appendChild(titleElement);
         newAd.appendChild(descElement);
