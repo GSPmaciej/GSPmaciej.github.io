@@ -256,7 +256,7 @@ async function loadAds() {
 
     console.log("ODPOWIEDŹ Z SHEETY:", data);  // 👈 pokazuje strukturę całej odpowiedzi
 
-    const ads = data["arkusz1"] || [];
+    const ads = data["pomocprawna"] || [];
 
     ads.reverse().forEach((ad, index) => {
         console.log(`OGŁOSZENIE [${index}]:`, ad); // 👈 pokazuje każde ogłoszenie
@@ -291,7 +291,7 @@ async function loadAds() {
 function addAd(ad) {
     let url = 'https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/ogloszenia/pomocprawna';
     let body = {
-        "arkusz1": {
+        "pomocprawna": {
             Tytuł: ad.title,
             Opis: ad.desc,
             Termin: ad.deadline,
@@ -306,7 +306,7 @@ function addAd(ad) {
     })
     .then((response) => response.json())
     .then(json => {
-        console.log(json["arkusz1"]);
+        console.log(json["pomocprawna"]);
         loadAds(); // odśwież listę ogłoszeń
     });
 }
@@ -315,7 +315,7 @@ function addAd(ad) {
 function editAd(id, ad) {
     let url = `https://api.sheety.co/2842a3b11074b5d945611a83730e57d5/ogloszenia/pomocprawna/${id}`;
     let body = {
-        "arkusz1": {
+        "pomocprawna": {
             Tytuł: ad.title,
             Opis: ad.desc,
             Termin: ad.deadline,
@@ -330,7 +330,7 @@ function editAd(id, ad) {
     })
     .then((response) => response.json())
     .then(json => {
-        console.log(json["arkusz1"]);
+        console.log(json["pomocprawna"]);
         loadAds(); // odśwież listę ogłoszeń
     });
 }
